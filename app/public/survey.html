@@ -1,10 +1,148 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Survey Page</title>
-  </head>
-  <body>
-    <h1>This is the survey page</h1>
-  </body>
+
+<head>
+  <meta charset="utf-8">
+  <title>Survey Page</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+  <script src="http://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+</head>
+<style media="screen">
+  body {
+    text-align: center;
+  }
+  #submit{
+    margin-bottom: 100px;
+  }
+</style>
+
+<body>
+  <div class="container">
+    <div class="jumbotron">
+      <h2>Woohoo! Let's begin!<i class="fa fa-hand-peace-o" aria-hidden="true"></i></h2>
+      <hr>
+      <form>
+        <h3>First name:</h3><br>
+        <input type="text" name="name"><br>
+        <h3>Photo Link:</h3><br>
+        <input type="text" name="photoLink">
+      </form>
+    </div>
+    <hr>
+    <div id="questions">
+
+
+    </div>
+    <h2>Question 1</h2>
+    <h4>Your mind is always buzzing with unexplored ideas and plans.</h4>
+    <select>
+  		<option>1 (Strongly Disagree</option>
+  		<option>2</option>
+  		<option>3</option>
+  		<option>4</option>
+  		<option>5 (Strongly Agree</option>
+  </select>
+    <hr>
+    <h2>Question 2</h2>
+    <h4>Generally speaking, you rely more on your experience than your imagination.</h4>
+    <select>
+        <option>1 (Strongly Disagree</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5 (Strongly Agree</option>
+  </select>
+    <hr>
+    <h2>Question 3</h2>
+    <h4>You find it easy to stay relaxed and focused even when there is some pressure.</h4>
+    <select>
+          <option>1 (Strongly Disagree</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5 (Strongly Agree</option>
+  </select>
+    <hr>
+    <h2>Question 4</h2>
+    <h4>You rarely do something just out of sheer curiosity.</h4>
+    <select>
+          <option>1 (Strongly Disagree</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5 (Strongly Agree</option>
+  </select>
+    <hr>
+    <h2>Question 5</h2>
+    <h4>People can rarely upset you.</h4>
+    <select>
+          <option>1 (Strongly Disagree</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5 (Strongly Agree</option>
+  </select>
+    <hr>
+    <h2>Question 6</h2>
+    <h4>It is often difficult for you to relate to other people’s feelings.</h4>
+    <select>
+          <option>1 (Strongly Disagree</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5 (Strongly Agree</option>
+  </select>
+    <hr>
+    <h2>Question 7</h2>
+    <h4>In a discussion, truth should be more important than people’s sensitivities.</h4>
+    <select>
+          <option>1 (Strongly Disagree</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5 (Strongly Agree</option>
+  </select>
+    <hr>
+    <h2>Question 8</h2>
+    <h4>You rarely get carried away by fantasies and ideas.</h4>
+    <select>
+          <option>1 (Strongly Disagree</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5 (Strongly Agree</option>
+  </select>
+    <hr>
+    <h2>Question 9</h2>
+    <h4>You think that everyone’s views should be respected regardless of whether they are supported by facts or not.</h4>
+    <select>
+          <option>1 (Strongly Disagree</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5 (Strongly Agree</option>
+  </select>
+    <hr>
+    <h2>Question 10</h2>
+    <h4>You feel more energetic after spending time with a group of people.</h4>
+    <select>
+          <option>1 (Strongly Disagree</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5 (Strongly Agree</option>
+  </select>
+    <hr>
+    <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit"><i class="fa fa-check-circle" aria-hidden="true"></i>
+ Submit</button>
+  </div>
+  <!-- NOTE: create questions dynamically later on? -->
+  <script type="text/javascript">
+    // var questions = [
+    //   ""
+    // ]
+  </script>
+</body>
+
 </html>
