@@ -3,15 +3,18 @@
 
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Survey Page</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
   <script src="http://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <style media="screen">
   body {
     text-align: center;
   }
+
   #submit {
     margin-bottom: 100px;
   }
@@ -30,12 +33,36 @@
       </form>
     </div>
     <hr>
-    <!-- NOTE: Questions added dynamically in here -->
     <div id="questions">
+      <!-- NOTE: Questions added dynamically in here -->
     </div>
     <hr>
-    <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit"><i class="fa fa-check-circle" aria-hidden="true"></i>
+    <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit" data-toggle="modal" data-target="#myModal"><i class="fa fa-check-circle" aria-hidden="true"></i>
  Submit</button>
+    <!-- NOTE: modal stuff -->
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">We've found a match!</h4>
+          </div>
+          <div class="modal-body">
+            <div id="match">
+              <p>Some text in the modal.</p>
+              <!-- NOTE: friend match data goes here -->
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
   </div>
   <script type="text/javascript">
     var questions = [
@@ -83,7 +110,33 @@
           console.log(data);
           console.log("adding new friend");
         });
+
+      $.get("api/friends", function(data) {
+        if (data) {
+          var results = [];
+          //looping through all the entries
+          for (var i = 0; i < data.length - 1; i++) {
+            var diff = [];
+            //looping through all the scores
+            for (var j = 0; j < data[i].scores.length; j++) {
+              var num = newFriend.scores[i] - data[i].scores[j];
+              diff.push(num);
+            }
+            //this is used with the reduce method to add all the elements in an array.
+            function getSum(total, num) {
+              return total + num;
+            }
+            results.push(diff.reduce(getSum));
+          }
+          console.log(results);
+          // NOTE: then, find the smallest difference in the results array
+          // NOTE: get the index
+          // NOTE: use that index to find the correct object in the json
+          // NOTE: display the properties from that object in the modal
+        }
+      })
     });
   </script>
 </body>
+
 </html>
