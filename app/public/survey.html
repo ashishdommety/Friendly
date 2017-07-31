@@ -12,7 +12,7 @@
   body {
     text-align: center;
   }
-  #submit{
+  #submit {
     margin-bottom: 100px;
   }
 </style>
@@ -24,125 +24,66 @@
       <hr>
       <form>
         <h3>First name:</h3><br>
-        <input type="text" name="name"><br>
+        <input id="name" type="text" name="name"><br>
         <h3>Photo Link:</h3><br>
-        <input type="text" name="photoLink">
+        <input id="photo" type="text" name="photoLink">
       </form>
     </div>
     <hr>
+    <!-- NOTE: Questions added dynamically in here -->
     <div id="questions">
-
-
     </div>
-    <h2>Question 1</h2>
-    <h4>Your mind is always buzzing with unexplored ideas and plans.</h4>
-    <select>
-  		<option>1 (Strongly Disagree</option>
-  		<option>2</option>
-  		<option>3</option>
-  		<option>4</option>
-  		<option>5 (Strongly Agree</option>
-  </select>
-    <hr>
-    <h2>Question 2</h2>
-    <h4>Generally speaking, you rely more on your experience than your imagination.</h4>
-    <select>
-        <option>1 (Strongly Disagree</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5 (Strongly Agree</option>
-  </select>
-    <hr>
-    <h2>Question 3</h2>
-    <h4>You find it easy to stay relaxed and focused even when there is some pressure.</h4>
-    <select>
-          <option>1 (Strongly Disagree</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5 (Strongly Agree</option>
-  </select>
-    <hr>
-    <h2>Question 4</h2>
-    <h4>You rarely do something just out of sheer curiosity.</h4>
-    <select>
-          <option>1 (Strongly Disagree</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5 (Strongly Agree</option>
-  </select>
-    <hr>
-    <h2>Question 5</h2>
-    <h4>People can rarely upset you.</h4>
-    <select>
-          <option>1 (Strongly Disagree</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5 (Strongly Agree</option>
-  </select>
-    <hr>
-    <h2>Question 6</h2>
-    <h4>It is often difficult for you to relate to other people’s feelings.</h4>
-    <select>
-          <option>1 (Strongly Disagree</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5 (Strongly Agree</option>
-  </select>
-    <hr>
-    <h2>Question 7</h2>
-    <h4>In a discussion, truth should be more important than people’s sensitivities.</h4>
-    <select>
-          <option>1 (Strongly Disagree</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5 (Strongly Agree</option>
-  </select>
-    <hr>
-    <h2>Question 8</h2>
-    <h4>You rarely get carried away by fantasies and ideas.</h4>
-    <select>
-          <option>1 (Strongly Disagree</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5 (Strongly Agree</option>
-  </select>
-    <hr>
-    <h2>Question 9</h2>
-    <h4>You think that everyone’s views should be respected regardless of whether they are supported by facts or not.</h4>
-    <select>
-          <option>1 (Strongly Disagree</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5 (Strongly Agree</option>
-  </select>
-    <hr>
-    <h2>Question 10</h2>
-    <h4>You feel more energetic after spending time with a group of people.</h4>
-    <select>
-          <option>1 (Strongly Disagree</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5 (Strongly Agree</option>
-  </select>
     <hr>
     <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit"><i class="fa fa-check-circle" aria-hidden="true"></i>
  Submit</button>
   </div>
-  <!-- NOTE: create questions dynamically later on? -->
   <script type="text/javascript">
-    // var questions = [
-    //   ""
-    // ]
+    var questions = [
+      "Your mind is always buzzing with unexplored ideas and plans.",
+      "Generally speaking, you rely more on your experience than your imagination.",
+      "You find it easy to stay relaxed and focused even when there is some pressure.",
+      "You rarely do something just out of sheer curiosity.",
+      "People can rarely upset you.",
+      "It is often difficult for you to relate to other people’s feelings.",
+      "In a discussion, truth should be more important than people’s sensitivities.",
+      "You rarely get carried away by fantasies and ideas.",
+      "You think that everyone’s views should be respected regardless of whether they are supported by facts or not.",
+      "You feel more energetic after spending time with a group of people."
+    ];
+    for (var i = 0; i < questions.length; i++) {
+      var element = "<h2>Question " + (i + 1) + "</h2>" +
+        questions[i] +
+        "<br>" +
+        "<select id= q" + (i + 1) + ">" +
+        "<option data-id = '1'>1 (Strongly Disagree</option>" +
+        "<option data-id = '2'>2</option>" +
+        "<option data-id = '3'>3</option>" +
+        "<option data-id = '4'>4</option>" +
+        "<option data-id = '5'>5 (Strongly Agree</option>" +
+        "</select>" +
+        "<hr>";
+
+      $("#questions").append(element);
+    }
+    $("#submit").on("click", function() {
+      event.preventDefault();
+      var scoreArr = [];
+      for (var i = 0; i < questions.length; i++) {
+        scoreArr.push($("#q" + (i + 1)).children("option:selected").data("id"));
+      }
+      // console.log(scoreArr);
+      var newFriend = {
+        name: $("#name").val().trim(),
+        photo: $("#photo").val().trim(),
+        scores: scoreArr
+      };
+      console.log(newFriend)
+      $.post("/api/friends", newFriend)
+        .done(function(data) {
+          console.log(data);
+          console.log("adding new friend");
+        });
+    });
   </script>
 </body>
-
 </html>
