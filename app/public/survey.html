@@ -87,11 +87,11 @@
         questions[i] +
         "<br>" +
         "<select id= q" + (i + 1) + ">" +
-        "<option data-id = '1'>1 (Strongly Disagree</option>" +
-        "<option data-id = '2'>2</option>" +
-        "<option data-id = '3'>3</option>" +
-        "<option data-id = '4'>4</option>" +
-        "<option data-id = '5'>5 (Strongly Agree</option>" +
+        "<option data-id = '1'>1 (Strongly Disagree)</option>" +
+        "<option data-id = '2'>2 (Disagree)</option>" +
+        "<option data-id = '3'>3 (Maybe)</option>" +
+        "<option data-id = '4'>4 (Agree)</option>" +
+        "<option data-id = '5'>5 (Strongly Agree)</option>" +
         "</select>" +
         "<hr>";
 
@@ -140,12 +140,11 @@
           for (var i = 0; i < results.length; i++) {
             converted.push(Math.abs(results[i]));
           }
-
           // NOTE: then, find the smallest difference in the results array
           var match = Math.min(...converted);
           console.log("Match value:" + match);
           // NOTE: get the index
-          var matchObjIndex = results.indexOf(match);
+          var matchObjIndex = converted.indexOf(match);
           console.log("match Object index: " + matchObjIndex);
           // NOTE: use that index to find the correct object in the json
           var matchObj = data[matchObjIndex];

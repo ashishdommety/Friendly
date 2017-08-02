@@ -1,14 +1,13 @@
 const express = require("express");
+const path = require("path");
 
 const app = express();
 
-const PORT = 3000;
+exports.survey = function(req, res) {
+  res.sendFile(path.join(__dirname, "../public/survey.html"));
+};
+exports.home =function(req,res){
+  res.sendFile(path.join(__dirname, "../public/home.html"));
+};
 
-app.get("/survey", function(req, res) {
-  res.sendFile(path.join(__dirname, "./public/survey.html"));
-});
-app.get("/", function(req,res){
-  res.sendFile(path.join(__dirname, "./public/home.html"));
-})
-
-// NOTE: working on server.js file directly
+// NOTE: exported functions sent over to server.js

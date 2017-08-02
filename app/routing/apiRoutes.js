@@ -1,18 +1,18 @@
 const express = require("express");
-
 const app = express();
-
 const PORT = 3000;
+const users = require("../data/friends.js");
 
-app.get("/api/friends", function(req,res){
-  res.json(people);
-})
+exports.peopleJSON = function(req,res){
+  res.json(users.people);
+};
 
-app.post("/api/friends", function(req,res){
+// console.log(users.people);
+exports.newFriend =  function(req,res){
   var newFriend = req.body;
   console.log(newFriend);
   // newFriend.routeName = newFriend.name.replace(/\s+/g, "").toLowerCase();
   // console.log(newFriend);
-  people.push(newFriend);
+  users.people.push(newFriend);
   // res.json(newFriend);
-})
+};
