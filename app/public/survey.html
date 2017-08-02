@@ -18,6 +18,10 @@
   #submit {
     margin-bottom: 100px;
   }
+  #photoMod{
+    width:50%;
+    height:50%;
+  }
 </style>
 
 <body>
@@ -52,7 +56,8 @@
           </div>
           <div class="modal-body">
             <div id="match">
-              <p>Some text in the modal.</p>
+              <p id="nameMod"></p>
+              <img id="photoMod" src="" alt="">
               <!-- NOTE: friend match data goes here -->
             </div>
           </div>
@@ -104,7 +109,7 @@
         photo: $("#photo").val().trim(),
         scores: scoreArr
       };
-      console.log(newFriend)
+      // console.log(newFriend)
       $.post("/api/friends", newFriend)
         .done(function(data) {
           console.log(data);
@@ -128,14 +133,29 @@
             }
             results.push(diff.reduce(getSum));
           }
-          console.log(results);
+
+          // NOTE: convert the results to positive
+
+          var converted = [];
+          for (var i = 0; i < results.length; i++) {
+            converted.push(Math.abs(results[i]));
+          }
+
           // NOTE: then, find the smallest difference in the results array
+          var match = Math.min(...converted);
+          console.log("Match value:" + match);
           // NOTE: get the index
+          var matchObjIndex = results.indexOf(match);
+          console.log("match Object index: " + matchObjIndex);
           // NOTE: use that index to find the correct object in the json
-          // NOTE: display the properties from that object in the modal
-        }
-      })
+          var matchObj = data[matchObjIndex];
+          console.log(matchObj);
+          // // NOTE: display the properties from that object in the modal
+          $("#nameMod").text(matchObj.name);
+          $("#photoMod").attr("src",matchObj.photo);
+      }
     });
+  });
   </script>
 </body>
 
