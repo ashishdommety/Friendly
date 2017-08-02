@@ -5,7 +5,7 @@ const htmlRoutes = require("./app/routing/htmlRoutes.js");
 const apiRoutes = require("./app/routing/apiRoutes.js");
 
 const app = express();
-const PORT = 3000;
+const port = process.env.PORT || 3000;
 
 // Sets up the Express app to handle data parsing
 app.use(bodyParser.json());
@@ -22,6 +22,6 @@ app.get("/api/friends", apiRoutes.peopleJSON);
 
 app.post("/api/friends", apiRoutes.newFriend);
 
-app.listen(PORT, function(){
-  console.log("Listening on port: " + PORT);
+app.listen(port, function(){
+  console.log("Listening on port: " + port);
 });
