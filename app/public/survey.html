@@ -83,7 +83,7 @@
       "You feel more energetic after spending time with a group of people."
     ];
     for (var i = 0; i < questions.length; i++) {
-      var element = "<h2>Question " + (i + 1) + "</h2>" +
+      var element = "<h2>Question "  + (i + 1) + "</h2>" +
         questions[i] +
         "<br>" +
         "<select id= q" + (i + 1) + ">" +
@@ -133,15 +133,13 @@
             }
             results.push(diff.reduce(getSum));
           }
-
           // NOTE: convert the results to positive
-
           var converted = [];
           for (var i = 0; i < results.length; i++) {
             converted.push(Math.abs(results[i]));
           }
           // NOTE: then, find the smallest difference in the results array
-          var match = Math.min(...converted);
+          var match = Math.min(converted);
           console.log("Match value:" + match);
           // NOTE: get the index
           var matchObjIndex = converted.indexOf(match);
