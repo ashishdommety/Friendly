@@ -138,8 +138,10 @@
           for (var i = 0; i < results.length; i++) {
             converted.push(Math.abs(results[i]));
           }
+          console.log(converted)
           // NOTE: then, find the smallest difference in the results array
-          var match = Math.min(converted);
+          // NOTE: here we use the spread operator to convert the array into arguments
+          var match = Math.min(...converted);
           console.log("Match value:" + match);
           // NOTE: get the index
           var matchObjIndex = converted.indexOf(match);
